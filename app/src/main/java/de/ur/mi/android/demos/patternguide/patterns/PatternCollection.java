@@ -2,9 +2,10 @@ package de.ur.mi.android.demos.patternguide.patterns;
 
 /**
  * Stellt eine Sammlung von Pattern dar, die u.a. auch aus einem String-Array mit entsprechend
- * formatierten Inhalten initialisiert werden kann. Über eine öffentliche Methode können die Pattern
- * der Kollektion ausgelesen werden. Zurückgegeben wird dabei immer das nächste Pattern in der Liste.
- * In einem Ringschluss wird nach dem letzten Pattern der Liste wieder das erste zurückgegeben.
+ * formatierten Inhalten initialisiert werden kann. Über öffentliche Methoden können die Pattern
+ * der Kollektion ausgelesen werden. Zurückgegeben wird dabei immer das aktuelle, das vorherige
+ * oder das nächste Pattern in der Liste. In einem Ringschluss wird nach dem letzten Pattern der Liste
+ * wieder das Erste und nach dem ersten Pattern wieder das Letzte zurückgegeben.
  */
 public class PatternCollection {
 
@@ -13,25 +14,41 @@ public class PatternCollection {
     // Array mit den Pattern dieser Kategorie
     private final Pattern[] collection;
     // Position des nächsten Pattern in dem Array
-    private int nextIndex;
+    private int currentPatternIndex;
 
     public PatternCollection(Pattern[] collection) {
         this.collection = collection;
-        nextIndex = 0;
+        currentPatternIndex = 0;
+    }
+
+    public Pattern currentPattern() {
+        return collection[currentPatternIndex];
     }
 
     public Pattern nextPattern() {
-        Pattern nextPattern = collection[nextIndex];
-        nextIndex = getNextPatternIndex();
-        return nextPattern;
+        currentPatternIndex = getNextPatternIndex();
+        return currentPattern();
+    }
+
+    public Pattern previousPattern() {
+        currentPatternIndex = getPreviousPatternIndex();
+        return currentPattern();
     }
 
     private int getNextPatternIndex() {
-        if (nextIndex < collection.length - 1) {
-            return nextIndex + 1;
+        if (currentPatternIndex < collection.length - 1) {
+            return currentPatternIndex + 1;
         }
         return 0;
     }
+
+    private int getPreviousPatternIndex() {
+        if (currentPatternIndex > 0) {
+            return currentPatternIndex - 1;
+        }
+        return collection.length - 1;
+    }
+
 
     public static PatternCollection fromCSVArray(String[] csvArray) {
         return fromCSVArray(csvArray, DEFAULT_CSV_DELIMITER);
@@ -43,7 +60,8 @@ public class PatternCollection {
      * Inhalt interpretiert und so Titel und Beschreibung für das neue Pattern extrahiert. Das Trennzeichen
      * wird als zusätzlicher Parameter übergeben. Die erstellten Pattern werden als neue PatternCollection
      * zurückgegeben.
-     * @param csvArray Array mit den einzelnen CSV-formatierten Strings, aus denen die Pattern erstellt werden
+     *
+     * @param csvArray  Array mit den einzelnen CSV-formatierten Strings, aus denen die Pattern erstellt werden
      * @param delimiter Trennzeichen, das innerhalb eines CSV-formatierten Strings Titel und Beschreibung des Pattern trennt
      * @return Die neu erstellte PatternCollection
      */

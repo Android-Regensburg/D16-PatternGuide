@@ -6,7 +6,8 @@
     <string name="creationalPatternsLabel">Creational Patterns</string>
     <string name="structuralPatternsLabel">Structural Patterns</string>
     <string name="behavioralPatternsLabel">Behavioral Patterns</string>
-    <string name="nextButtonText">Next Pattern</string>
+    <string name="nextButtonText">Next</string>
+    <string name="previousButtonText">Previous</string>
     <string name="patternSourceText">www.gofpatterns.com</string>
     <string-array name="creationalPatterns">
         <item>"Abstract Factory Pattern";"This pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes. Given a set of related abstract classes, the Abstract Factory pattern provides a way to create instances of those abstract classes from a matched set of concerte subclases. The "Abstract Factory" pattern provides an abstract class that determines the appropriate concrete class to instantiate to create a set of concrete products that implement a standard interface. The client interacts only with the product interfaces and the Abstract Factory class. The client never knows about the concrete construction classes provided by this pattern. The Abstract Factory pattern is similar to the Factory Method pattern, except it creates families of related objects."</item>

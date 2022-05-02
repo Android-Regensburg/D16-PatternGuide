@@ -36,7 +36,8 @@ public abstract class PatternActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initContent();
         initUI();
-        renderNextPattern();
+        // Zeit das erste Pattern der Kollektion an
+        renderCurrentPattern();
     }
 
     /**
@@ -65,26 +66,46 @@ public abstract class PatternActivity extends AppCompatActivity {
          */
         TextView patternCategoryTitle = findViewById(R.id.patternCategoryText);
         patternCategoryTitle.setText(getPatternCategory().categoryName);
-        /* Referenziert den Button, mit dem die Nutzer*innen das jeweils nächste Pattern der Kategorie
-         * auswählen können. Im Anschluss wird direkt ein Listener für den Button registriert, in dessen
-         * Callback-Methode die private Methode der Activity aufgerufen wird, mit der das nächste Pattern
-         * ausgewählt und im UI angezeigt werden kann.
+        /* Referenziert die Buttons, mit dem die Nutzer*innen das jeweils nächste bzw. vorherige Pattern
+         * der Kategorie auswählen können. Im Anschluss wird direkt jeweils ein Listener für den Button registriert,
+         * in dessen Callback-Methode die private Methode der Activity aufgerufen wird, mit der das
+         * jeweilige Pattern ausgewählt und im UI angezeigt werden kann.
          */
         Button selectNextPatternButton = findViewById(R.id.nextPatternButton);
         selectNextPatternButton.setOnClickListener(view -> renderNextPattern());
+        Button selectPreviousPatternButton = findViewById(R.id.previousPatternButton);
+        selectPreviousPatternButton.setOnClickListener(v -> renderPreviousPattern());
         // Referenziert das TextView, in dem der Titel des Pattern angezeigt werden soll
         patternTitleText = findViewById(R.id.patternTitleText);
         // Referenziert das TextView, in dem der Beschreibungstext des Pattern angezeigt werden soll
-        patternDescriptionText = findViewById(R.id.patternDescriptionTitle);
+        patternDescriptionText = findViewById(R.id.patternDescriptionText);
+    }
+
+    public void renderCurrentPattern() {
+        renderPattern(patternCollection.currentPattern());
     }
 
     /**
-     * Wählt das nächste Pattern aus der Sammlung aus und zeigt diese im UI der Activity an. Dazu werden
-     * Title und Beschreibung des Pattern ausgelesen und als Inhalte der entsprechenden Views gesetzt,
-     * die im Vorfeld (siehe initUI) in Instanzvariablen der Activity referenziert wurden.
+     * Wählt das nächste Pattern aus der Sammlung aus und zeigt diese im UI der Activity an.
      */
     public void renderNextPattern() {
-        Pattern pattern = patternCollection.nextPattern();
+        renderPattern(patternCollection.nextPattern());
+    }
+
+    /**
+     * Wählt das vorherige Pattern aus der Sammlung aus und zeigt diese im UI der Activity an.
+     */
+    public void renderPreviousPattern() {
+        renderPattern(patternCollection.previousPattern());
+    }
+
+    /**
+     * Stellt das übergebene Pattern im UI dar. Dazu werden Title und Beschreibung ausgelesen und
+     * als Inhalte der entsprechenden Views gesetzt, die im Vorfeld (siehe initUI) in Instanzvariablen
+     * der Activity referenziert wurden.
+     * @param pattern Das Pattern, dessen Inhalte dargestellt werden sollen.
+     */
+    public void renderPattern(Pattern pattern) {
         patternTitleText.setText(pattern.title);
         patternDescriptionText.setText(pattern.description);
     }
