@@ -21,11 +21,6 @@ public class MainActivity extends AppCompatActivity {
         initUI();
     }
 
-    /**
-     * Setzt das korrekte Layout (activity_main.xml) und registriert Klick-Listener auf den drei
-     * Buttons. In den Callback-Methoden wird dabei die Methode zum Starten der nächsten Activity mit
-     * einem jeweils unterschiedlichen Parameter aufgerufen.
-     */
     private void initUI() {
         setContentView(R.layout.activity_main);
     }
