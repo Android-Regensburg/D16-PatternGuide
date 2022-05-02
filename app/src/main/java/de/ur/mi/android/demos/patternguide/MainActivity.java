@@ -2,14 +2,13 @@ package de.ur.mi.android.demos.patternguide;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import de.ur.mi.android.demos.patternguide.patterns.activities.BehavioralPatternsActivity;
-import de.ur.mi.android.demos.patternguide.patterns.activities.CreationalPatternsActivity;
-import de.ur.mi.android.demos.patternguide.patterns.activities.StructuralPatternsActivity;
+import de.ur.mi.android.demos.patternguide.ui.activities.BehavioralPatternsActivity;
+import de.ur.mi.android.demos.patternguide.ui.activities.CreationalPatternsActivity;
+import de.ur.mi.android.demos.patternguide.ui.activities.StructuralPatternsActivity;
 
 /**
  * Der Pattern Guide stellt Design Patterns aus dem Gebiet der Objekt-Orientierten Programmierung vor.
@@ -33,29 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private void initUI() {
         setContentView(R.layout.activity_main);
         Button selectCreationalPatternsButton = findViewById(R.id.creationalPatternsButton);
-        selectCreationalPatternsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Startet die Activity zur Anzeige der Creational Patterns
-                startPatternActivity(CreationalPatternsActivity.class);
-            }
-        });
         Button selectStructuralPatternsButton = findViewById(R.id.structuralPatternsButton);
-        selectStructuralPatternsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Startet die Activity zur Anzeige der Structural Patterns
-                startPatternActivity(StructuralPatternsActivity.class);
-            }
-        });
         Button selectBehavioralPatternsButton = findViewById(R.id.behavioralPatternsButton);
-        selectBehavioralPatternsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Startet die Activity zur Anzeige der Behavioral Patterns
-                startPatternActivity(BehavioralPatternsActivity.class);
-            }
-        });
+        selectCreationalPatternsButton.setOnClickListener(view -> startPatternActivity(CreationalPatternsActivity.class));
+        selectStructuralPatternsButton.setOnClickListener(view -> startPatternActivity(StructuralPatternsActivity.class));
+        selectBehavioralPatternsButton.setOnClickListener(view -> startPatternActivity(BehavioralPatternsActivity.class));
     }
 
     /**
