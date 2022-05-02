@@ -19,7 +19,7 @@ import de.ur.mi.android.demos.patternguide.patterns.PatternCollection;
  * klassen über das Überschreiben entsprechender Getter-Methoden spezifiziert werden.
  *
  * Beim Start der Activity werden die zugehörigen Patterns geladen, das UI über eine Layout-Datei
- * initalisiert und ein Klick-Listener für das ring-förmige Durchschalten des aktuell angezeigten
+ * initialisiert und ein Klick-Listener für das ring-förmige Durchschalten des aktuell angezeigten
  * Patterns registriert.
  */
 public abstract class PatternActivity extends AppCompatActivity {
