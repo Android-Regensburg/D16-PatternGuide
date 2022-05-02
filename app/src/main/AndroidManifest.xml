@@ -9,9 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PatternGuide">
-        <activity android:name=".ui.activities.CreationalPatternsActivity" />
-        <activity android:name=".ui.activities.StructuralPatternsActivity" />
-        <activity android:name=".ui.activities.BehavioralPatternsActivity" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
